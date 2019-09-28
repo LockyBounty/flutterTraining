@@ -38,7 +38,7 @@ class MonApp extends StatelessWidget{
         title: 'Oh my geez!',
         home: Scaffold(
           appBar: AppBar(
-            title: Text('Stack Exercice:'),
+            title: Text('Stack/Card Exercice:'),
             ),
           body: Center(
             child: _buildCard(),),
@@ -55,7 +55,20 @@ class MonApp extends StatelessWidget{
       child: Column(
         children: [
           Container(
+            
             decoration: BoxDecoration(
+              // border: Border(
+              //   bottom: BorderSide(
+              //     color: Colors.white24,
+              //     width: 5.0
+              //     )
+              // ),
+              
+              borderRadius: BorderRadius.only(
+                
+                topLeft: Radius.circular(4),
+                topRight: Radius.circular(4),
+              ),
               color: Colors.red,
             ),
             child: ListTile(
