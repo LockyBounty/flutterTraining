@@ -53,6 +53,7 @@ flutter:
     - images/pi1.jpg
     - images/pi2.jpg
     - images/pi3.jpg
+    - images/KNK.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
