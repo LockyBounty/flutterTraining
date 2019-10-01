@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MonApp());
 
+//------> Step 0 base code + modif au fil de l'exe
 class MonApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class MonApp extends StatelessWidget{
         ]
         ,)
     ,);  
-    Widget textSection = Container( 
+    Widget textSection = Container( //Step 6
       padding: EdgeInsets.all(32),
       child: Text(
         
@@ -43,13 +44,18 @@ class MonApp extends StatelessWidget{
             Image.asset('images/KNK.jpg',width: 600, height: 240,fit: BoxFit.cover),//Step5
             titleSection(),
             buttonSection,
-            textSection, 
+            textSection,
+            
+            
           ], 
           ),
         ),
     );
+  
+
   }
 
+  //----> Step 1-2 title Row
   Widget titleSection() => Container(
     padding: EdgeInsets.all(32),
     child: Row(
@@ -79,6 +85,7 @@ class MonApp extends StatelessWidget{
       )
   );
 
+  //--------> Step 3 button Row
   Column _buildButtonColumn(Color color, IconData icon, String label) {
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -98,4 +105,6 @@ class MonApp extends StatelessWidget{
       ]
     );
   }
+
+
 }
