@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 
 void main() => runApp(MonApp());
 
@@ -70,11 +71,8 @@ class MonApp extends StatelessWidget{
             ]
           ),
         ), 
-        Icon(Icons.star,color: Colors.red),
-        Padding(
-          padding: EdgeInsets.all(4),
-          child: Text('41' ),
-        )
+        FavoriteWidget(),
+        
       ],
       )
   );
@@ -96,6 +94,57 @@ class MonApp extends StatelessWidget{
             )
           ),)
       ]
+    );
+  }
+}
+
+class FavoriteWidget extends StatefulWidget {
+
+  @override
+  _FavoriteWidgetState createState() => _FavoriteWidgetState(); 
+  //retourne une instance de _FavoriteWidgetState
+
+}
+
+class _FavoriteWidgetState extends State<FavoriteWidget> {
+  bool _isFavorited = true;
+  int _favoriteCount = 41;
+
+  void _toggleFavorite(){ //fct toggle 
+    setState((){
+      if (_isFavorited){
+        _favoriteCount--;
+        _isFavorited = false;
+
+      }
+      else {
+        _favoriteCount++;
+        _isFavorited= true;
+      }
+    }
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: EdgeInsets.all(0),
+          child: IconButton(
+            icon: (_isFavorited? Icon(Icons.star) : Icon(Icons.star_border)),
+            color: Colors.red,
+            onPressed: _toggleFavorite,
+          ),
+          ),
+        SizedBox(
+          width: 18,
+          child: Container(
+            child: Text('$_favoriteCount'),
+          ),
+        ),
+      ],
     );
   }
 }
