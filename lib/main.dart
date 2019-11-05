@@ -59,7 +59,22 @@ class _LoginPageState extends State<LoginPage> {
           ),
         SizedBox(height: 12.0,),
         buildButtonContainer(),
-      ],)
+        SizedBox(height: 30.0,),
+        Container(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text("Don't you have an account?"),
+              Text("SIGN UP", style: TextStyle(
+                color: Theme.of(context).primaryColor, 
+                fontSize: 16.0,
+                fontWeight: FontWeight.w500),
+              )
+            ],
+            )
+            )
+      ],
+      )
 
        ],
         )
@@ -89,7 +104,9 @@ class _LoginPageState extends State<LoginPage> {
   }
   Widget buildTextFieldPass(String hintText){
     return TextField(
+      obscureText: true, //cache le pass entré par l'user
       decoration: InputDecoration(
+        
         prefixIcon: const Icon(Icons.lock, color: Colors.green,),
         prefixText: ' ',
         suffixIcon: IconButton(
