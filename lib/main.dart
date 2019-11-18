@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
+//import 'login.dart' as logme1;
+import 'package:mongo_dart/mongo_dart.dart' show Db, DbCollection, where;
+import 'dart:async';
 
-void main() => runApp(MonApp());
+
+Future<void> main() async {
+  final db = Db("mongodb://172.20.0.1:27017/test");
+  await db.open();
+
+  var coll = db.collection('test');
+  await coll
+  .find(where.eq("age",18))
+  .forEach((v)=> print(v));
+
+ return runApp(MonApp());
+} 
 
 class MonApp extends StatelessWidget {
   @override
@@ -19,7 +33,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  //dynamic loli= logme1.DBConnection();
+ 
   bool _isHidden = true;
+  
   var _logoVisibility = Icon(Icons.visibility_off, color: Colors.grey);
 
   void _toggleVisibility() {
@@ -34,15 +51,29 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
+  dynamic getdata() {
+    //  Db db = Db("mongodb://172.20.0.1:27017/test");
+    //  await db.open();
+    //  DbCollection coll = db.collection("test");
+    //  dynamic printer(){ coll.findOne(where.eq("age",18));}
+    return "connexion ok";//printer();
+
+}
+
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         body: Container(
       decoration: BoxDecoration(
         color: Colors.transparent,
       ),
-      padding: EdgeInsets.only(top: 16, right: 20.0, left: 20.0, bottom: 10.0),
       child: ListView(
+        //vaut mieux faire le padding/margin global dans le listview 
+        //autrement on aurait un mauvais rendu
+        padding: EdgeInsets.only(top: 16, right: 20.0, left: 20.0, bottom: 10.0),
+      
         children: <Widget>[
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -101,7 +132,9 @@ class _LoginPageState extends State<LoginPage> {
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.w500),
                               ))),
-                      onTap: () => print("click on Sign up")),
+                      onTap: () => print(getdata()//"click on Sign up")),
+                      )
+                  )
                 ],
               )),
               
@@ -176,7 +209,8 @@ class _LoginPageState extends State<LoginPage> {
     return GestureDetector(
         //ajoute interaction au container
         onTap: () {
-          print('login button pressed');
+          //loli.getConnection();
+          print("lol");//'${logme1.find({age:18})}');
         },
         child: Container(
             height: 56.0,
