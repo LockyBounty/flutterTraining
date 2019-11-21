@@ -5,14 +5,17 @@ import 'dart:async';
 
 
 Future<void> main() async {
+  final Map<String, double> _map={"a":1.0};
   final db = Db("mongodb://172.20.0.1:27017/test");
   await db.open();
 
   var coll = db.collection('test');
   await coll
-  .find(where.eq("age",18))
-  .forEach((v)=> print(v));
-
+  .find(where.eq("age",18))//.fields(['name']))
+  .forEach((v)=> _map[v["name"]]=v["age"]);//print('${v["name"]} ${ v["age"].toString()}'));//print(v["name"]));
+ var _list = _map.values.toList(); //chopper la valeur age /ou keys(unique) 
+ print(_list);
+ //for (var key in _map.keys){print(key);}//alternative
  return runApp(MonApp());
 } 
 
@@ -34,7 +37,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   //dynamic loli= logme1.DBConnection();
- 
+
   bool _isHidden = true;
   
   var _logoVisibility = Icon(Icons.visibility_off, color: Colors.grey);
@@ -206,10 +209,12 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget buildButtonContainer() {
+    
     return GestureDetector(
         //ajoute interaction au container
         onTap: () {
           //loli.getConnection();
+
           print("lol");//'${logme1.find({age:18})}');
         },
         child: Container(
